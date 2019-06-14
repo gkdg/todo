@@ -1,0 +1,31 @@
+<div>
+  <form (ngSubmit)="addTask()">
+    <h2>My ToDo List</h2>
+    <input [(ngModel)]= "newTask" name=myInput type="text">
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    <li
+      *ngFor="let currentTodo of todosArray"
+      [class.done]="currentTodo.complete === true"
+    >
+      <p *ngIf="currentTodo.complete === false">
+        <span>
+          <input [(ngModel)]="currentTodo.complete" type="checkbox" />
+            {{ currentTodo.task }}
+        </span>
+        <button (click)="delete(currentTodo)">x</button>
+      </p>
+    </li>
+  </ul>
+
+  <ul>
+    <h2> Done List </h2>
+    <li *ngFor="let currentTodo of todosArray">
+      <p *ngIf="currentTodo.complete === true">{{ currentTodo.task }}</p>
+    </li>
+
+
+  </ul>
+</div>
+
